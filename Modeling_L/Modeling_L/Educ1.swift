@@ -17,22 +17,28 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*
+        Navigation Bar
+        */
         // タイトルの変更、表示
         self.title = "共通教育棟 1階"
         self.navigationController?.navigationBar
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        
         let myLeftButton: UIBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "onClickMyButton")
         myLeftButton.tag = 0
         self.navigationItem.leftBarButtonItem = myLeftButton
         
+        
+        /*
+        scrollView
+        */
         var myScrollView = UIScrollView();
         
         myScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         
         // UIImageに画像を設定する.
-        let myImage = UIImage(named: "/Users/e135722/Documents/swift/Modeling_L/images/2014-07-28_01.24.57.png")
+        let myImage = UIImage(named: "test.png")
         
         // UIImageViewを生成する.
         var myImageView = UIImageView()
@@ -54,6 +60,10 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         self.view.addSubview(myScrollView)
         
         
+        
+        /*
+        toolBar
+        */
         // ツールバーのサイズを決める.
         myToolbar = UIToolbar(frame: CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 40.0))
         
@@ -105,7 +115,10 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         if sender.tag == 1 {
             self.view.backgroundColor = UIColor.greenColor()
         } else if sender.tag == 2 {
-            self.view.backgroundColor = UIColor.blueColor()
+            // 遷移するViewを設定
+            let nextViewController: UIViewController = Educ2()
+            // Viewの移動
+            self.navigationController?.pushViewController(Educ2(), animated: false)
         } else if sender.tag == 3 {
             self.view.backgroundColor = UIColor.redColor()
         } else if sender.tag == 4 {
