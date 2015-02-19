@@ -18,12 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        var viewController : Educ1 = Educ1(nibName:nil, bundle:nil)
-        myNavigationController = UINavigationController(rootViewController: viewController)
+        var viewController : CampusMap = CampusMap(nibName:nil, bundle:nil)
 
         self.window!.makeKeyAndVisible()
-        self.window!.rootViewController = myNavigationController
-        
+        self.window!.rootViewController = viewController
         return true
     }
 

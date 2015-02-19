@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
+class Educ1_5: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
     
     var myToolbar: UIToolbar!
     @IBOutlet var myImageView: UIImageView!
@@ -18,27 +18,18 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         super.viewDidLoad()
         
         /*
-        Navigation Bar
-        */
-        // タイトルの変更、表示
-        self.title = "共通教育棟 1階"
-        self.navigationController?.navigationBar
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
-        let myLeftButton: UIBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: "onClickMyButton")
-        myLeftButton.tag = 0
-        self.navigationItem.leftBarButtonItem = myLeftButton
-        
-        
-        /*
         scrollView
         */
         var myScrollView = UIScrollView();
+        myScrollView.delegate = self
+        myScrollView.minimumZoomScale = 0.5
+        myScrollView.maximumZoomScale = 1.2
         
         myScrollView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
         
         // UIImageに画像を設定する.
-        let myImage = UIImage(named: "test.png")
+        
+        let myImage = UIImage(named: "Educ1_5.png")
         
         // UIImageViewを生成する.
         var myImageView = UIImageView()
@@ -47,7 +38,7 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         myImageView.image = myImage
         
         // frameの値を設定する.
-        myImageView.frame = CGRectMake(0, 0, myImage.size.width, myImage.size.height)
+        myImageView.frame = CGRectMake(0, 0, myImage!.size.width, myImage!.size.height)
         
         // ScrollViewにmyImageViewを追加する.
         myScrollView.addSubview(myImageView)
@@ -62,7 +53,44 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         
         
         /*
-        toolBar
+        上側Bar
+        */
+        // ツールバーのサイズを決める.
+        var myNaviToolbar = UIToolbar()
+        myNaviToolbar = UIToolbar(frame: CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 40.0))
+        
+        // ツールバーの位置を決める.
+        myNaviToolbar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 20.0)
+        
+        // ツールバーの色を決める.
+        myNaviToolbar.barStyle = .BlackTranslucent
+        myNaviToolbar.tintColor = UIColor.whiteColor()
+        myNaviToolbar.backgroundColor = UIColor.blackColor()
+        
+        // 全体マップボタンを生成する.
+        let myMapButton: UIBarButtonItem = UIBarButtonItem(title: "全体マップ", style:.Plain, target: self, action: "onClickNaviButton:")
+        myMapButton.tag = 1
+        
+        // マップ名称ボタンを生成する.
+        let myNameButton: UIBarButtonItem = UIBarButtonItem(title: "共通教育棟1号館 5階", style:.Bordered, target: self, action: nil)
+        
+        // 学部内ボタンを生成する.
+        let myDepButton: UIBarButtonItem = UIBarButtonItem(title: "棟変更", style:.Plain, target: self, action: "onClickNaviButton:")
+        myDepButton.tag = 2
+        
+        // スペーサを生成する.
+        let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        
+        // ボタンをツールバーに入れる.
+        myNaviToolbar.items = [myMapButton, space, myNameButton, space, myDepButton]
+        
+        // ツールバーに追加する.
+        self.view.addSubview(myNaviToolbar)
+        
+        
+        
+        /*
+        下側Bar
         */
         // ツールバーのサイズを決める.
         myToolbar = UIToolbar(frame: CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 40.0))
@@ -95,8 +123,6 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         let myUIBarButton5kai: UIBarButtonItem = UIBarButtonItem(title: "5階", style:.Bordered, target: self, action: "onClickBarButton:")
         myUIBarButton5kai.tag = 5
         
-        // スペーサを生成する.
-        let space: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         // ボタンをツールバーに入れる.
         myToolbar.items = [space, myUIBarButton1kai, space, myUIBarButton2kai, space, myUIBarButton3kai, space, myUIBarButton4kai, space, myUIBarButton5kai, space]
@@ -105,32 +131,56 @@ class Educ1: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         self.view.addSubview(myToolbar)
         
         
-
+        
+    }
+    
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        print("pinch")
+        return myImageView
     }
     
     /*
     UIBarButtonItemが押された際に呼ばれる.
     */
     func onClickBarButton(sender: UIBarButtonItem) {
+        println("Button is pushed")
         if sender.tag == 1 {
-            self.view.backgroundColor = UIColor.greenColor()
+            println("floor1")
+            var nextViewController: UIViewController = Educ1_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
         } else if sender.tag == 2 {
-            // 遷移するViewを設定
-            let nextViewController: UIViewController = Educ2()
-            // Viewの移動
-            self.navigationController?.pushViewController(Educ2(), animated: false)
+            println("floor2")
+            var nextViewController: UIViewController = Educ1_2()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
         } else if sender.tag == 3 {
-            self.view.backgroundColor = UIColor.redColor()
+            println("floor3")
+            var nextViewController: UIViewController = Educ1_3()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
         } else if sender.tag == 4 {
-            self.view.backgroundColor = UIColor.blackColor()
+            println("floor4")
+            var nextViewController: UIViewController = Educ1_4()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
         } else if sender.tag == 5 {
-            self.view.backgroundColor = UIColor.orangeColor()
-        } else if sender.tag == 0 {
-            
+            println("floor5")
         }
+        
         
     }
     
+    /*
+    上側Buttonが押された時に呼び出される
+    */
+    func onClickNaviButton(sender: UIButton){
+        println("NaviButton is pushed")
+        if sender.tag == 1 {
+            println("CampusMap")
+            var nextViewController: UIViewController = CampusMap()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+        } else if sender.tag == 2 {
+            println("Building change")
+        }
+    }
     
     
     override func didReceiveMemoryWarning() {
