@@ -110,8 +110,8 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         // ScrollViewにcontentSizeを設定する.
         myScrollView.contentSize = CGSizeMake(myImageView.frame.size.width, myImageView.frame.size.height)
         
-        myScrollView.delaysContentTouches = false
-        myScrollView.canCancelContentTouches = false
+        myScrollView.delaysContentTouches = true
+        myScrollView.canCancelContentTouches = true
         myScrollView.userInteractionEnabled = true
 
         
