@@ -13,6 +13,12 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
     var myToolbar: UIToolbar!
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var myScrollView: UIScrollView!
+    let EducW = UIWindow()
+    let EducB1 = UIButton()
+    let EducB2 = UIButton()
+    let EducB3 = UIButton()
+    let EducB4 = UIButton()
+    let EducC = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +81,7 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         let myNameButton: UIBarButtonItem = UIBarButtonItem(title: "共通教育棟1号館 2階", style:.Bordered, target: self, action: nil)
         
         // 学部内ボタンを生成する.
-        let myDepButton: UIBarButtonItem = UIBarButtonItem(title: "棟変更", style:.Plain, target: self, action: "onClickNaviButton:")
+        let myDepButton: UIBarButtonItem = UIBarButtonItem(title: "　　棟変更", style:.Plain, target: self, action: "onClickNaviButton:")
         myDepButton.tag = 2
         
         // スペーサを生成する.
@@ -179,9 +185,98 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
             self.presentViewController(nextViewController, animated: false, completion: nil)
         } else if sender.tag == 2 {
             println("Building change")
+            makeEducWindow()
         }
     }
     
+    func makeEducWindow(){
+        
+        EducW.backgroundColor = UIColor.whiteColor()
+        EducW.frame = CGRectMake(0, 0, 200, 400)
+        EducW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        EducW.alpha = 0.95
+        EducW.layer.cornerRadius = 20
+        
+        EducW.makeKeyWindow()
+        self.EducW.makeKeyAndVisible()
+        
+        EducB1.frame = CGRectMake(0, 0, 100, 40)
+        EducB1.backgroundColor = UIColor.orangeColor()
+        EducB1.setTitle("1号館", forState: .Normal)
+        EducB1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducB1.layer.masksToBounds = true
+        EducB1.layer.cornerRadius = 20.0
+        EducB1.layer.position = CGPointMake(self.EducW.frame.width/2, 50)
+        EducB1.addTarget(self, action: "selectE:", forControlEvents: .TouchUpInside)
+        EducB1.tag = 1
+        self.EducW.addSubview(EducB1)
+        
+        EducB2.frame = CGRectMake(0, 0, 100, 40)
+        EducB2.backgroundColor = UIColor.orangeColor()
+        EducB2.setTitle("2号館", forState: .Normal)
+        EducB2.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducB2.layer.masksToBounds = true
+        EducB2.layer.cornerRadius = 20.0
+        EducB2.layer.position = CGPointMake(self.EducW.frame.width/2, 100)
+        EducB2.addTarget(self, action: "selectE:", forControlEvents: .TouchUpInside)
+        EducB2.tag = 2
+        self.EducW.addSubview(EducB2)
+        
+        EducB3.frame = CGRectMake(0, 0, 100, 40)
+        EducB3.backgroundColor = UIColor.orangeColor()
+        EducB3.setTitle("3号館", forState: .Normal)
+        EducB3.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducB3.layer.masksToBounds = true
+        EducB3.layer.cornerRadius = 20.0
+        EducB3.layer.position = CGPointMake(self.EducW.frame.width/2, 150)
+        EducB3.addTarget(self, action: "selectE:", forControlEvents: .TouchUpInside)
+        EducB3.tag = 3
+        self.EducW.addSubview(EducB3)
+        
+        EducB4.frame = CGRectMake(0, 0, 100, 40)
+        EducB4.backgroundColor = UIColor.orangeColor()
+        EducB4.setTitle("4号館", forState: .Normal)
+        EducB4.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducB4.layer.masksToBounds = true
+        EducB4.layer.cornerRadius = 20.0
+        EducB4.layer.position = CGPointMake(self.EducW.frame.width/2, 200)
+        EducB4.addTarget(self, action: "selectE:", forControlEvents: .TouchUpInside)
+        EducB4.tag = 4
+        self.EducW.addSubview(EducB4)
+        
+        EducC.frame = CGRectMake(0, 0, 100, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.EducW.frame.width/2, self.EducW.frame.height-50)
+        EducC.addTarget(self, action: "selectE:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.EducW.addSubview(EducC)
+        
+    }
+    
+    func selectE(sender: UIButton){
+        if sender.tag == 2 {
+            var nextViewController: UIViewController = Educ2_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 3 {
+            var nextViewController: UIViewController = Educ3_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 4 {
+            var nextViewController: UIViewController = Educ4_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 10{
+            EducW.hidden = true
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
