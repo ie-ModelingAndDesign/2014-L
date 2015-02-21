@@ -20,6 +20,10 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
     let EducB4 = UIButton()
     let EducC = UIButton()
     
+    var info = ""
+    let infoW = UIWindow()
+    let infoIv = UIImageView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,9 +56,6 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         // ScrollViewにcontentSizeを設定する.
         myScrollView.contentSize = CGSizeMake(myImageView.frame.size.width, myImageView.frame.size.height)
         myScrollView.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        
-        // ViewにScrollViewをAddする.
-        self.view.addSubview(myScrollView)
         
         
         
@@ -89,10 +90,6 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         
         // ボタンをツールバーに入れる.
         myNaviToolbar.items = [myMapButton, space, myNameButton, space, myDepButton]
-        
-        // ツールバーに追加する.
-        self.view.addSubview(myNaviToolbar)
-        
         
         
         /*
@@ -133,10 +130,102 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         // ボタンをツールバーに入れる.
         myToolbar.items = [space, myUIBarButton1kai, space, myUIBarButton2kai, space, myUIBarButton3kai, space, myUIBarButton4kai, space, myUIBarButton5kai, space]
         
-        // ツールバーに追加する.
+        
+        
+        
+        /*
+        トイレ情報生成
+        */
+        let TButton1m = UIButton()
+        TButton1m.frame = CGRectMake(0, 0, 40, 40)
+        //TButton1m.backgroundColor = UIColor.redColor()
+        TButton1m.layer.position = CGPointMake(231, 117)
+        TButton1m.addTarget(self, action: "selectInfo:", forControlEvents: .TouchUpInside)
+        TButton1m.tag = 3
+        myScrollView.addSubview(TButton1m)
+        
+        let TButton1w = UIButton()
+        TButton1w.frame = CGRectMake(0, 0, 40, 40)
+        //TButton1w.backgroundColor = UIColor.redColor()
+        TButton1w.layer.position = CGPointMake(231, 170)
+        TButton1w.addTarget(self, action: "selectInfo:", forControlEvents: .TouchUpInside)
+        TButton1w.tag = 4
+        myScrollView.addSubview(TButton1w)
+        
+        let TButton2m = UIButton()
+        TButton2m.frame = CGRectMake(0, 0, 80, 40)
+        //TButton2m.backgroundColor = UIColor.redColor()
+        TButton2m.layer.position = CGPointMake(872, 417)
+        TButton2m.addTarget(self, action: "selectInfo:", forControlEvents: .TouchUpInside)
+        TButton2m.tag = 1
+        myScrollView.addSubview(TButton2m)
+        
+        let TButton2w = UIButton()
+        TButton2w.frame = CGRectMake(0, 0, 80, 40)
+        //TButton2w.backgroundColor = UIColor.redColor()
+        TButton2w.layer.position = CGPointMake(872, 367)
+        TButton2w.addTarget(self, action: "selectInfo:", forControlEvents: .TouchUpInside)
+        TButton2w.tag = 2
+        myScrollView.addSubview(TButton2w)
+        
+        
+        // ViewにScrollViewをAddする.
+        self.view.addSubview(myScrollView)
+        // ツールバーを画面に追加する.
+        self.view.addSubview(myNaviToolbar)
+        // ツールバーを画面に追加する.
         self.view.addSubview(myToolbar)
+    }
+    
+    // トイレが押されたときの処理(トイレを選択する)
+    func selectInfo(sender: UIButton){
+        if sender.tag == 1 {
+            info = "1_2m1"
+        }
+        if sender.tag == 2 {
+            info = "1_2w1"
+        }
+        if sender.tag == 3 {
+            info = "1_2m2"
+        }
+        if sender.tag == 4 {
+            info = "1_2w2"
+        }
+        makeInfo()
         
+        if sender.tag == 10 {
+            infoW.hidden = true
+        }
+    }
+    
+    // トイレ情報を表示する
+    func makeInfo(){
+        infoW.backgroundColor = UIColor.whiteColor()
+        infoW.frame = CGRectMake(0, 0, 200, 400)
+        infoW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        infoW.alpha = 0.95
+        infoW.layer.cornerRadius = 20
         
+        infoW.makeKeyWindow()
+        self.infoW.makeKeyAndVisible()
+        
+        var infoI = UIImage(named: info)
+        infoIv.image = infoI
+        infoIv.frame = CGRectMake(0, 0, infoI!.size.width, infoI!.size.height)
+        
+        infoIv.layer.position = CGPointMake(self.infoW.frame.width/2, 150)
+        self.infoW.addSubview(infoIv)
+        
+        EducC.frame = CGRectMake(0, 0, 100, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.infoW.frame.width/2, self.infoW.frame.height-50)
+        EducC.addTarget(self, action: "selectInfo:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.infoW.addSubview(EducC)
         
     }
     
@@ -145,6 +234,7 @@ class Educ1_2: UIViewController, UIToolbarDelegate, UIScrollViewDelegate{
         print("pinch")
         return myImageView
     }
+
     
     /*
     UIBarButtonItemが押された際に呼ばれる.
