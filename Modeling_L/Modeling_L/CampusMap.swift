@@ -30,8 +30,30 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
     let LLB1 = UIButton()
     let LLB2 = UIButton()
     let LLB3 = UIButton()
-
     
+    let EEW = UIWindow()
+    let EEB1 = UIButton()
+    let EEB2 = UIButton()
+    let EEB3 = UIButton()
+    
+    let agrW = UIWindow()
+    let agrB1 = UIButton()
+    let agrB2 = UIButton()
+    let agrB3 = UIButton()
+    let agrB4 = UIButton()
+    
+    let SciW = UIWindow()
+    let SciB1 = UIButton()
+    let SciB2 = UIButton()
+    let SciB3 = UIButton()
+    
+    let engW = UIWindow()
+    let engB1 = UIButton()
+    let engB2 = UIButton()
+    let engB3 = UIButton()
+    let engB4 = UIButton()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,6 +127,45 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         LLButton.tag = 3
         LLButton.userInteractionEnabled = true
         
+        //教育学部
+        var EEButton = UIButton()
+        
+        EEButton.frame = CGRectMake(0, 0, 320, 150)
+        EEButton.layer.position = CGPoint(x: 910, y: 650)
+        //EEButton.backgroundColor = UIColor.redColor()
+        EEButton.addTarget(self, action: "onClickFacButton:", forControlEvents: .TouchUpInside)
+        EEButton.tag = 4
+        EEButton.userInteractionEnabled = true
+        
+        //農学部
+        var agrButton = UIButton()
+        agrButton.frame = CGRectMake(0, 0, 325, 240)
+        agrButton.layer.position = CGPoint(x: 350, y: 495)
+        //agrButton.backgroundColor = UIColor.redColor()
+        agrButton.addTarget(self, action: "onClickFacButton:", forControlEvents: .TouchUpInside)
+        agrButton.tag = 5
+        agrButton.userInteractionEnabled = true
+        
+        
+        //理学部
+        var SciButton = UIButton()
+        SciButton.frame = CGRectMake(0, 0, 300, 240)
+        SciButton.layer.position = CGPoint(x: 835, y: 220)
+        //SciButton.backgroundColor = UIColor.redColor()
+        SciButton.addTarget(self, action: "onClickFacButton:", forControlEvents: .TouchUpInside)
+        SciButton.tag = 6
+        SciButton.userInteractionEnabled = true
+        
+        
+        //工学部
+        var engButton = UIButton()
+        engButton.frame = CGRectMake(0, 0, 250, 250)
+        engButton.layer.position = CGPoint(x: 320, y: 190)
+        //engButton.backgroundColor = UIColor.redColor()
+        engButton.addTarget(self, action: "onClickFacButton:", forControlEvents: .TouchUpInside)
+        engButton.tag = 7
+        engButton.userInteractionEnabled = true
+        
 
         
         // ScrollViewにcontentSizeを設定する.
@@ -119,9 +180,13 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         myScrollView.addSubview(EducButton)
         myScrollView.addSubview(shButton)
         myScrollView.addSubview(LLButton)
+        myScrollView.addSubview(EEButton)
+        myScrollView.addSubview(agrButton)
+        myScrollView.addSubview(SciButton)
+        myScrollView.addSubview(engButton)
         
         // ViewにScrollViewをAddする.
-        myScrollView.contentOffset = CGPoint(x: myImageView.frame.size.width/2, y: 0)
+        myScrollView.contentOffset = CGPoint(x: 800, y: 0)
         self.view.addSubview(myScrollView)
 
         
@@ -144,6 +209,22 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         else if sender.tag == 3 {
             println("Law and Tourism")
             makeLLWindow()
+        }
+        else if sender.tag == 4 {
+            println("EE")
+            makeEEWindow()
+        }
+        else if sender.tag == 5 {
+            println("Agriculture")
+            makeAgrWindow()
+        }
+        else if sender.tag == 6 {
+            println("Science")
+            makeSciWindow()
+        }
+        else if sender.tag == 7 {
+            println("Engineering")
+            makeEngWindow()
         }
         else{
             println("else...Maybe Error occered.")
@@ -332,7 +413,7 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         LLB1.frame = CGRectMake(0, 0, 180, 40)
         LLB1.backgroundColor = UIColor.orangeColor()
         LLB1.setTitle("法文棟", forState: .Normal)
-        LLB1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        LLB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
         LLB1.layer.masksToBounds = true
         LLB1.layer.cornerRadius = 20.0
         LLB1.layer.position = CGPointMake(self.LLW.frame.width/2, 50)
@@ -343,7 +424,7 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         LLB2.frame = CGRectMake(0, 0, 180, 40)
         LLB2.backgroundColor = UIColor.orangeColor()
         LLB2.setTitle("法文新棟", forState: .Normal)
-        LLB2.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        LLB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
         LLB2.layer.masksToBounds = true
         LLB2.layer.cornerRadius = 20.0
         LLB2.layer.position = CGPointMake(self.LLW.frame.width/2, 100)
@@ -393,6 +474,356 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         }*/
         if sender.tag == 10{
             LLW.hidden = true
+        }
+    }
+    
+    
+    func makeEEWindow(){
+        
+        EEW.backgroundColor = UIColor.whiteColor()
+        EEW.frame = CGRectMake(0, 0, 200, 400)
+        EEW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        EEW.alpha = 0.95
+        EEW.layer.cornerRadius = 20
+        
+        EEW.makeKeyWindow()
+        self.EEW.makeKeyAndVisible()
+        
+        EEB1.frame = CGRectMake(0, 0, 100, 40)
+        EEB1.backgroundColor = UIColor.orangeColor()
+        EEB1.setTitle("1号館", forState: .Normal)
+        EEB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        EEB1.layer.masksToBounds = true
+        EEB1.layer.cornerRadius = 20.0
+        EEB1.layer.position = CGPointMake(self.EEW.frame.width/2, 50)
+        EEB1.addTarget(self, action: "selectEE:", forControlEvents: .TouchUpInside)
+        EEB1.tag = 1
+        self.EEW.addSubview(EEB1)
+        
+        EEB2.frame = CGRectMake(0, 0, 100, 40)
+        EEB2.backgroundColor = UIColor.orangeColor()
+        EEB2.setTitle("2号館", forState: .Normal)
+        EEB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        EEB2.layer.masksToBounds = true
+        EEB2.layer.cornerRadius = 20.0
+        EEB2.layer.position = CGPointMake(self.EEW.frame.width/2, 100)
+        EEB2.addTarget(self, action: "selectEE:", forControlEvents: .TouchUpInside)
+        EEB2.tag = 2
+        self.EEW.addSubview(EEB2)
+        
+        EEB3.frame = CGRectMake(0, 0, 100, 40)
+        EEB3.backgroundColor = UIColor.orangeColor()
+        EEB3.setTitle("3号館", forState: .Normal)
+        EEB3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        EEB3.layer.masksToBounds = true
+        EEB3.layer.cornerRadius = 20.0
+        EEB3.layer.position = CGPointMake(self.EEW.frame.width/2, 150)
+        EEB3.addTarget(self, action: "selectEE:", forControlEvents: .TouchUpInside)
+        EEB3.tag = 3
+        self.EEW.addSubview(EEB3)
+        
+        EducC.frame = CGRectMake(0, 0, 100, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.EEW.frame.width/2, self.EEW.frame.height-50)
+        EducC.addTarget(self, action: "selectEE:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.EEW.addSubview(EducC)
+        
+    }
+    
+    func selectEE(sender: UIButton){
+        /*if sender.tag == 1 {
+        var nextViewController: UIViewController = Educ1_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 2 {
+        var nextViewController: UIViewController = Educ2_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 3 {
+        var nextViewController: UIViewController = Educ3_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }*/
+        if sender.tag == 10{
+            EEW.hidden = true
+        }
+    }
+    
+    func makeAgrWindow(){
+        
+        agrW.backgroundColor = UIColor.whiteColor()
+        agrW.frame = CGRectMake(0, 0, 200, 400)
+        agrW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        agrW.alpha = 0.95
+        agrW.layer.cornerRadius = 20
+        
+        agrW.makeKeyWindow()
+        self.agrW.makeKeyAndVisible()
+        
+        agrB1.frame = CGRectMake(0, 0, 180, 40)
+        agrB1.backgroundColor = UIColor.orangeColor()
+        agrB1.setTitle("本館", forState: .Normal)
+        agrB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        agrB1.layer.masksToBounds = true
+        agrB1.layer.cornerRadius = 20.0
+        agrB1.layer.position = CGPointMake(self.agrW.frame.width/2, 50)
+        agrB1.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        agrB1.tag = 1
+        self.agrW.addSubview(agrB1)
+        
+        agrB2.frame = CGRectMake(0, 0, 180, 40)
+        agrB2.backgroundColor = UIColor.orangeColor()
+        agrB2.setTitle("COMB1号館", forState: .Normal)
+        agrB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        agrB2.layer.masksToBounds = true
+        agrB2.layer.cornerRadius = 20.0
+        agrB2.layer.position = CGPointMake(self.agrW.frame.width/2, 100)
+        agrB2.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        agrB2.tag = 2
+        self.agrW.addSubview(agrB2)
+        
+        agrB3.frame = CGRectMake(0, 0, 180, 40)
+        agrB3.backgroundColor = UIColor.orangeColor()
+        agrB3.setTitle("COMB2号館", forState: .Normal)
+        agrB3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        agrB3.layer.masksToBounds = true
+        agrB3.layer.cornerRadius = 20.0
+        agrB3.layer.position = CGPointMake(self.agrW.frame.width/2, 150)
+        agrB3.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        agrB3.tag = 3
+        self.agrW.addSubview(agrB3)
+        
+        agrB4.frame = CGRectMake(0, 0, 180, 40)
+        agrB4.backgroundColor = UIColor.orangeColor()
+        agrB4.setTitle("風樹館", forState: .Normal)
+        agrB4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        agrB4.layer.masksToBounds = true
+        agrB4.layer.cornerRadius = 20.0
+        agrB4.layer.position = CGPointMake(self.agrW.frame.width/2, 200)
+        agrB4.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        agrB4.tag = 4
+        self.agrW.addSubview(agrB4)
+        
+        EducC.frame = CGRectMake(0, 0, 180, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.agrW.frame.width/2, self.agrW.frame.height-50)
+        EducC.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.agrW.addSubview(EducC)
+        
+    }
+    
+    func selectAgr(sender: UIButton){
+        /*if sender.tag == 1 {
+            var nextViewController: UIViewController = Educ1_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 2 {
+            var nextViewController: UIViewController = Educ2_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 3 {
+            var nextViewController: UIViewController = Educ3_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }
+        if sender.tag == 4 {
+            var nextViewController: UIViewController = Educ4_1()
+            self.presentViewController(nextViewController, animated: false, completion: nil)
+            EducW.hidden = true
+        }*/
+        if sender.tag == 10{
+            agrW.hidden = true
+        }
+    }
+    
+    func makeSciWindow(){
+        
+        SciW.backgroundColor = UIColor.whiteColor()
+        SciW.frame = CGRectMake(0, 0, 200, 400)
+        SciW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        SciW.alpha = 0.95
+        SciW.layer.cornerRadius = 20
+        
+        SciW.makeKeyWindow()
+        self.SciW.makeKeyAndVisible()
+        
+        SciB1.frame = CGRectMake(0, 0, 180, 40)
+        SciB1.backgroundColor = UIColor.orangeColor()
+        SciB1.setTitle("本館", forState: .Normal)
+        SciB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        SciB1.layer.masksToBounds = true
+        SciB1.layer.cornerRadius = 20.0
+        SciB1.layer.position = CGPointMake(self.SciW.frame.width/2, 50)
+        SciB1.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        SciB1.tag = 1
+        self.SciW.addSubview(SciB1)
+        
+        SciB2.frame = CGRectMake(0, 0, 180, 40)
+        SciB2.backgroundColor = UIColor.orangeColor()
+        SciB2.setTitle("別館", forState: .Normal)
+        SciB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        SciB2.layer.masksToBounds = true
+        SciB2.layer.cornerRadius = 20.0
+        SciB2.layer.position = CGPointMake(self.SciW.frame.width/2, 100)
+        SciB2.addTarget(self, action: "selectAgr:", forControlEvents: .TouchUpInside)
+        SciB2.tag = 2
+        self.SciW.addSubview(SciB2)
+        
+        SciB3.frame = CGRectMake(0, 0, 180, 40)
+        SciB3.backgroundColor = UIColor.orangeColor()
+        SciB3.setTitle("理系総合研究棟", forState: .Normal)
+        SciB3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        SciB3.layer.masksToBounds = true
+        SciB3.layer.cornerRadius = 20.0
+        SciB3.layer.position = CGPointMake(self.SciW.frame.width/2, 150)
+        SciB3.addTarget(self, action: "selectSci:", forControlEvents: .TouchUpInside)
+        SciB3.tag = 3
+        self.SciW.addSubview(SciB3)
+        
+        EducC.frame = CGRectMake(0, 0, 180, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.SciW.frame.width/2, self.SciW.frame.height-50)
+        EducC.addTarget(self, action: "selectSci:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.SciW.addSubview(EducC)
+        
+    }
+    
+    func selectSci(sender: UIButton){
+        /*if sender.tag == 1 {
+        var nextViewController: UIViewController = Educ1_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 2 {
+        var nextViewController: UIViewController = Educ2_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 3 {
+        var nextViewController: UIViewController = Educ3_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 4 {
+        var nextViewController: UIViewController = Educ4_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }*/
+        if sender.tag == 10{
+            SciW.hidden = true
+        }
+    }
+    
+    func makeEngWindow(){
+        
+        engW.backgroundColor = UIColor.whiteColor()
+        engW.frame = CGRectMake(0, 0, 200, 400)
+        engW.layer.position = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        engW.alpha = 0.95
+        engW.layer.cornerRadius = 20
+        
+        engW.makeKeyWindow()
+        self.engW.makeKeyAndVisible()
+        
+        engB1.frame = CGRectMake(0, 0, 100, 40)
+        engB1.backgroundColor = UIColor.orangeColor()
+        engB1.setTitle("1号館", forState: .Normal)
+        engB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        engB1.layer.masksToBounds = true
+        engB1.layer.cornerRadius = 20.0
+        engB1.layer.position = CGPointMake(self.engW.frame.width/2, 50)
+        engB1.addTarget(self, action: "selectEng:", forControlEvents: .TouchUpInside)
+        engB1.tag = 1
+        self.engW.addSubview(engB1)
+        
+        engB2.frame = CGRectMake(0, 0, 100, 40)
+        engB2.backgroundColor = UIColor.orangeColor()
+        engB2.setTitle("2号館", forState: .Normal)
+        engB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        engB2.layer.masksToBounds = true
+        engB2.layer.cornerRadius = 20.0
+        engB2.layer.position = CGPointMake(self.engW.frame.width/2, 100)
+        engB2.addTarget(self, action: "selectEng:", forControlEvents: .TouchUpInside)
+        engB2.tag = 2
+        self.engW.addSubview(engB2)
+        
+        engB3.frame = CGRectMake(0, 0, 100, 40)
+        engB3.backgroundColor = UIColor.orangeColor()
+        engB3.setTitle("3号館", forState: .Normal)
+        engB3.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        engB3.layer.masksToBounds = true
+        engB3.layer.cornerRadius = 20.0
+        engB3.layer.position = CGPointMake(self.engW.frame.width/2, 150)
+        engB3.addTarget(self, action: "selectEng:", forControlEvents: .TouchUpInside)
+        engB3.tag = 3
+        self.engW.addSubview(engB3)
+        
+        engB4.frame = CGRectMake(0, 0, 100, 40)
+        engB4.backgroundColor = UIColor.orangeColor()
+        engB4.setTitle("4号館", forState: .Normal)
+        engB4.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        engB4.layer.masksToBounds = true
+        engB4.layer.cornerRadius = 20.0
+        engB4.layer.position = CGPointMake(self.engW.frame.width/2, 200)
+        engB4.addTarget(self, action: "selectEng:", forControlEvents: .TouchUpInside)
+        engB4.tag = 4
+        self.engW.addSubview(engB4)
+        
+        EducC.frame = CGRectMake(0, 0, 100, 40)
+        EducC.backgroundColor = UIColor.orangeColor()
+        EducC.setTitle("戻る", forState: .Normal)
+        EducC.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        EducC.layer.masksToBounds = true
+        EducC.layer.cornerRadius = 20.0
+        EducC.layer.position = CGPointMake(self.engW.frame.width/2, self.engW.frame.height-50)
+        EducC.addTarget(self, action: "selectEng:", forControlEvents: .TouchUpInside)
+        EducC.tag = 10
+        self.engW.addSubview(EducC)
+        
+    }
+    
+    func selectEng(sender: UIButton){
+        /*if sender.tag == 1 {
+        var nextViewController: UIViewController = Educ1_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 2 {
+        var nextViewController: UIViewController = Educ2_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 3 {
+        var nextViewController: UIViewController = Educ3_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }
+        if sender.tag == 4 {
+        var nextViewController: UIViewController = Educ4_1()
+        self.presentViewController(nextViewController, animated: false, completion: nil)
+        EducW.hidden = true
+        }*/
+        if sender.tag == 10{
+            engW.hidden = true
         }
     }
     
