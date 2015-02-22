@@ -413,7 +413,7 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         LLB1.frame = CGRectMake(0, 0, 180, 40)
         LLB1.backgroundColor = UIColor.orangeColor()
         LLB1.setTitle("法文棟", forState: .Normal)
-        LLB1.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        LLB1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         LLB1.layer.masksToBounds = true
         LLB1.layer.cornerRadius = 20.0
         LLB1.layer.position = CGPointMake(self.LLW.frame.width/2, 50)
@@ -424,7 +424,7 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
         LLB2.frame = CGRectMake(0, 0, 180, 40)
         LLB2.backgroundColor = UIColor.orangeColor()
         LLB2.setTitle("法文新棟", forState: .Normal)
-        LLB2.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        LLB2.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         LLB2.layer.masksToBounds = true
         LLB2.layer.cornerRadius = 20.0
         LLB2.layer.position = CGPointMake(self.LLW.frame.width/2, 100)
@@ -457,16 +457,17 @@ class CampusMap: UIViewController, UIScrollViewDelegate{
     }
     
     func selectLL(sender: UIButton){
-        /*if sender.tag == 1 {
-            var nextViewController: UIViewController = Educ1_1()
+        if sender.tag == 1 {
+            var nextViewController: UIViewController = LL1()
             self.presentViewController(nextViewController, animated: false, completion: nil)
-            EducW.hidden = true
+            LLW.hidden = true
         }
         if sender.tag == 2 {
-            var nextViewController: UIViewController = Educ2_1()
+            var nextViewController: UIViewController = LN1()
             self.presentViewController(nextViewController, animated: false, completion: nil)
-            EducW.hidden = true
+            LLW.hidden = true
         }
+        /*
         if sender.tag == 3 {
             var nextViewController: UIViewController = Educ3_1()
             self.presentViewController(nextViewController, animated: false, completion: nil)
